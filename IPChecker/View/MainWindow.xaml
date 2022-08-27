@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPChecker"
+        xmlns:viewmodel="clr-namespace:IPChecker.ViewModel" 
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="350" 
         Width="400">
 
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -44,7 +49,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBox Margin="5 0 5 0" Text="{Binding Path=IPDisplay}"/>
+                    <TextBox Margin="5 0 5 0" Text="{Binding Path=IPField}" />
                 </Grid>
             </Grid>
 
@@ -128,15 +133,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <Grid Grid.Column="0">
-                    <Button Margin="5" Content="Find">
-
-                    </Button>
+                    <Button Margin="5" Content="Find" Command="{Binding CheckIPCommand}"/>
                 </Grid>
+                
                 <Grid Grid.Column="1">
-                    <Button Margin="5" Content="My IP">
-
-                    </Button>
+                    <Button Margin="5" Content="My IP" Command="{Binding GetMyIPCommand}"/>
                 </Grid>
             </Grid>
         </Grid>
