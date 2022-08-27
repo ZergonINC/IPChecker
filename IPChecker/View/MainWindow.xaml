@@ -1,0 +1,151 @@
+﻿<Window x:Class="IPChecker.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IPChecker"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="350" 
+        Width="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label FontSize="25" HorizontalContentAlignment="Center" Foreground="#616161" Margin="0 20 0 0">
+                    IP Checker
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Введите IP:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Margin="5 0 5 0" Text="{Binding Path=IPDisplay}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Страна:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=Country}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Регион:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=Region}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Город:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=City}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Валюта:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=Currency}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Foreground="#616161" Margin="25 0 0 0">
+                        Ваш IP:
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{Binding Path=MyIP}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button Margin="5" Content="Find">
+
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Margin="5" Content="My IP">
+
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <WebBrowser>
+                
+            </WebBrowser>
+        </Grid>
+    </Grid>
+</Window>
+
