@@ -3,17 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IPChecker"
+        xmlns:local="clr-namespace:IPChecker" 
         xmlns:viewmodel="clr-namespace:IPChecker.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="350" 
         Width="400">
 
-    <Window.DataContext>
-        <viewmodel:MainWindowViewModel/>
-    </Window.DataContext>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -64,7 +61,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=Country}"/>
+                    <TextBlock Text="{Binding Path=CountryField}"/>
                 </Grid>
             </Grid>
 
@@ -79,7 +76,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=Region}"/>
+                    <TextBlock Text="{Binding Path=RegionField}"/>
                 </Grid>
             </Grid>
 
@@ -94,7 +91,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=City}"/>
+                    <TextBlock Text="{Binding Path=CityField}"/>
                 </Grid>
             </Grid>
 
@@ -109,7 +106,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=Currency}"/>
+                    <TextBlock Text="{Binding Path=CurrencyField}"/>
                 </Grid>
             </Grid>
 
@@ -124,7 +121,7 @@
                     </Label>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=MyIP}"/>
+                    <TextBlock Text="{Binding Path=CurrentIPField}"/>
                 </Grid>
             </Grid>
 

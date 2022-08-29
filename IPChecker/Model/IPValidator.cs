@@ -11,7 +11,7 @@ namespace IPChecker.Model
     {
         string Check(string ip)
         {
-            Regex.IsMatch(textBox1.Text, @"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}")
+            Regex.IsMatch(textBox1.Text, @"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}");
 
             if (Regex.IsMatch(textBox1.Text, "[^0-9.]"))
             {
