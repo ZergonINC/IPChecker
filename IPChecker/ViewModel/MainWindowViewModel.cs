@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace IPChecker.ViewModel
 {
@@ -14,8 +9,8 @@ namespace IPChecker.ViewModel
         {
             get { return _ipField; }
 
-            set 
-            { 
+            set
+            {
                 _ipField = value;
                 RaisePropertyChanged(nameof(_ipField));
             }
@@ -87,7 +82,7 @@ namespace IPChecker.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    
+
                 });
             }
         }

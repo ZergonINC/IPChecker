@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IPChecker.Interfaces
+﻿namespace IPChecker.Interfaces
 {
     internal interface IBaseModel
     {
@@ -14,9 +8,9 @@ namespace IPChecker.Interfaces
 
         string Country { get; set; }
 
-        string Region { get; set; } 
+        string Region { get; set; }
 
-        string City { get; set; }   
+        string City { get; set; }
 
         string Currency { get; set; }
     }
