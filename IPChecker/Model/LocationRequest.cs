@@ -8,7 +8,7 @@ namespace IPChecker.Model
         internal void GetLocation()
         {
 
-            var url = new Uri($"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}");
+            //var url = new Uri($"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}");
         }
     }
 }

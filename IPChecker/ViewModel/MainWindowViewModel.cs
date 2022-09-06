@@ -1,4 +1,8 @@
-﻿using System.Windows.Input;
+﻿using IPChecker.Model;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace IPChecker.ViewModel
 {
@@ -16,74 +20,18 @@ namespace IPChecker.ViewModel
             }
         }
 
-        private string _countryField;
-        public string CountryField
-        {
-            get { return _countryField; }
 
-            set
-            {
-                _ipField = value;
-                RaisePropertyChanged(nameof(_countryField));
-            }
-        }
-
-        private string _regionField;
-        public string RegionField
-        {
-            get { return _regionField; }
-
-            set
-            {
-                _ipField = value;
-                RaisePropertyChanged(nameof(_regionField));
-            }
-        }
-
-        private string _cityField;
-        public string CityField
-        {
-            get { return _cityField; }
-
-            set
-            {
-                _ipField = value;
-                RaisePropertyChanged(nameof(_cityField));
-            }
-        }
-
-        private string _currencyField;
-        public string CurrencyField
-        {
-            get { return _currencyField; }
-
-            set
-            {
-                _ipField = value;
-                RaisePropertyChanged(nameof(_currencyField));
-            }
-        }
-
-        private string _currentIPField;
-        public string CurrentIPField
-        {
-            get { return _currentIPField; }
-
-            set
-            {
-                _ipField = value;
-                RaisePropertyChanged(nameof(_currentIPField));
-            }
-        }
+        GeoApiRequest geoApiRequest = new();
 
         public ICommand CheckIPCommand
         {
             get
             {
-                return new RelayCommand((parameter) =>
+                return new RelayCommand(async (parameter) =>
                 {
+                    var b = await geoApiRequest?.SendRequest(IPField);
 
-                });
+                }, (parameter) => true);//Добавить условие
             }
         }
 

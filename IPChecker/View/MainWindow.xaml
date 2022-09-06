@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IPChecker" 
+        xmlns:local="clr-namespace:IPChecker.View" 
+        xmlns:viewmodel="clr-namespace:IPChecker.ViewModel"   
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="350" 
-        Width="400">
+        Width="417">
 
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,14 +21,11 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="125"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
 
@@ -39,112 +40,59 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Введите IP:
-                    </Label>
+                    <Label Foreground="#616161" Margin="25 5 5 5" Content="Введите IP:"/>
                 </Grid>
+
                 <Grid Grid.Column="1">
-                    <TextBox Margin="5 0 5 0" Text="{Binding Path=IPField}" />
+                    <TextBox Margin="5 7" MaxLength="15" Style="{StaticResource textBoxInError}">
+                        <TextBox.Text>
+                            <Binding Path="IPField" UpdateSourceTrigger="PropertyChanged" >
+                                <Binding.ValidationRules>
+                                    <viewmodel:IpValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                 </Grid>
             </Grid>
 
             <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Страна:
-                    </Label>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=CountryField}"/>
-                </Grid>
+                <ListView Margin="5 0 5 0" IsEnabled="False">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Title}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Values}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Регион:
-                    </Label>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=RegionField}"/>
-                </Grid>
-            </Grid>
 
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Город:
-                    </Label>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=CityField}"/>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Валюта:
-                    </Label>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=CurrencyField}"/>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Label Foreground="#616161" Margin="25 0 0 0">
-                        Ваш IP:
-                    </Label>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Text="{Binding Path=CurrentIPField}"/>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="7">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
                 <Grid Grid.Column="0">
                     <Button Margin="5" Content="Find" Command="{Binding CheckIPCommand}"/>
                 </Grid>
-                
+
                 <Grid Grid.Column="1">
                     <Button Margin="5" Content="My IP" Command="{Binding GetMyIPCommand}"/>
                 </Grid>
             </Grid>
+            
         </Grid>
 
+        
         <Grid Grid.Column="1">
             <WebBrowser>
-                
+
             </WebBrowser>
         </Grid>
+        
     </Grid>
 </Window>
 
