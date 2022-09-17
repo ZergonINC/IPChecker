@@ -1,12 +1,15 @@
 ﻿using IPChecker.Model;
+using System;
 using System.Globalization;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace IPChecker.ViewModel
 {
-    internal class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         private string _ipField;
         public string IPField
@@ -20,8 +23,26 @@ namespace IPChecker.ViewModel
             }
         }
 
+        private Uri _location;
+        public Uri Location
+        {
+            get { return _location; }
 
-        GeoApiRequest geoApiRequest = new();
+            set
+            {
+                _location = value;
+                RaisePropertyChanged(nameof(_location));
+            }
+        }
+
+       
+
+        IpAddressDataBase ipAddressDataBase = new("Data Source=IPAddressDB.db");
+
+        public MainWindowViewModel()
+        {
+            
+        }
 
         public ICommand CheckIPCommand
         {
@@ -29,7 +50,7 @@ namespace IPChecker.ViewModel
             {
                 return new RelayCommand(async (parameter) =>
                 {
-                    var b = await geoApiRequest?.SendRequest(IPField);
+                    
 
                 }, (parameter) => true);//Добавить условие
             }
@@ -42,6 +63,20 @@ namespace IPChecker.ViewModel
                 return new RelayCommand((parameter) =>
                 {
 
+                });
+            }
+        }
+
+        // добавление
+        public ICommand OpenDBCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    //Добавить проверку на null
+                    ipAddressDataBase.Add(IpAddress);//добавляем текущий объект
+                    ipAddressDataBase.SaveChanges();
                 });
             }
         }

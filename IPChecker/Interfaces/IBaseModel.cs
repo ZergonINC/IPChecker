@@ -2,16 +2,18 @@
 {
     internal interface IBaseModel
     {
-        string IP { get; set; }
+        public int Id { get; set; }
 
-        string MyIP { get; set; }
+        public string Ip { get; set; }
 
-        string Country { get; set; }
+        public string Country_rus { get; set; }
 
-        string Region { get; set; }
+        public string Region_rus { get; set; }
 
-        string City { get; set; }
+        public string City_rus { get; set; }
 
-        string Currency { get; set; }
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
     }
 }

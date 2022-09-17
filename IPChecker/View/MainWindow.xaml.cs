@@ -12,6 +12,8 @@ namespace IPChecker.View
         {
             InitializeComponent();
 
+            // При запуске инициализирум объект ApiHelper.
+
             ApiHelper.InitializeClient();
         }
     }

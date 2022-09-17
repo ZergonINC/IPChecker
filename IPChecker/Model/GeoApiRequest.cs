@@ -8,11 +8,11 @@ namespace IPChecker.Model
 {
     internal class GeoApiRequest
     {
-        //Возможно нужен запрос для провайдера https://api.2ip.ua/provider.json?ip={ip}
+        // Возможно нужен запрос для провайдера https://api.2ip.ua/provider.json?ip={ip}
 
-        internal async Task<JsonValues> SendRequest(string ip)
+        internal async Task<DataByIPAddress> SendRequest(string geoApiXml)
         {
-            string geoApiXml = $"https://api.2ip.ua/geo.json?ip={ip}";
+            // Устанавливаем опции десериализации(чтение кириллицы и игнорирование регистра свойств).
 
             JsonSerializerOptions serializerOptions = new()
             {
@@ -23,19 +23,27 @@ namespace IPChecker.Model
                 PropertyNameCaseInsensitive = true
             };
 
+            // Получаем Api ответ от 2ip.ua.
+
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(geoApiXml))
             {
+                // Проверяем успешность операции
+
                 if (response.IsSuccessStatusCode)
                 {
-                    JsonValues jsonValues = JsonSerializer.Deserialize<JsonValues>(await response.Content.ReadAsStringAsync(), serializerOptions);
+                    // Десериализуем Api Json в специальный класс JsonValues для дальнейшего взаимодействия.
 
-                    return jsonValues;
+                    DataByIPAddress data = JsonSerializer.Deserialize<DataByIPAddress>(await response.Content.ReadAsStringAsync(), serializerOptions);
+
+                    return data;
                 }
                 else
                 {
-                    JsonValues emptyJsonValues = new();
+                    // В случае провала проверки возвращаем пустой класс.
 
-                    return emptyJsonValues;
+                    DataByIPAddress emptyData = new();
+
+                    return emptyData;
                 }
             }
         }
